@@ -44,6 +44,11 @@
                         <textarea class="form-control" name="instructions" id="inpInstructions" rows="2"></textarea>
                     </div>
 
+                    <div class="mb-3">
+                        <input type="number" name="schoolClass" class="form-control" id="inpClass"
+                            placeholder="Class to assign to" max=12>
+                    </div>
+
 
                 </div>
                 <div class="modal-footer">

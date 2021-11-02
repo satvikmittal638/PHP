@@ -15,7 +15,10 @@ function makeAPICall($urlExtension, $method, $data){
             curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
             break;    
         case "PUT":
-            curl_setopt($curl, CURLOPT_PUT, $data);        
+            curl_setopt($curl, CURLOPT_PUT, $data);  
+            break;    
+        default:
+            // do nothing just prevent errors      
             
     }
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);

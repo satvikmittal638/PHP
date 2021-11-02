@@ -20,9 +20,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_POST['dateTimeTo'] = $dateTimeTo;
 
     require '_handleApi.php';
-    $response = makeAPICall("/quiz/addQuiz", "POST_JSON", json_encode($_POST));
+    $responseQuizAdd = makeAPICall("/quiz/addQuiz", "POST_JSON", json_encode($_POST));
+    
 
-    if($response){
-        header("location: /school_quizzer/assignNewQuiz.php?quizid=".$response['id']);
+    if($responseQuizAdd){
+        // assigning the quizzes by making quizStudent relations in the Db
+        makeAPICall("/student/assign", "POST",array('quizId'=>$responseQuizAdd['id'] , 
+        "schoolClass"=>$_POST['schoolClass']));
+        header("location: /school_quizzer/manageQuiz.php?quizid=".$responseQuizAdd['id']);
     }
 }
